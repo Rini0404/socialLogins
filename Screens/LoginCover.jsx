@@ -89,7 +89,6 @@ const LoginCover = () => {
           })
             .then((response) => response.json())
             .then((response) => {
-              // console.log("ID TOKEN : ", response)
               navigation.navigate("IamMeScreen", {response})
             }
           )
