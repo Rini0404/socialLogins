@@ -2,10 +2,12 @@
   "expo": {
     "name": "loginAuth",
     "slug": "loginAuth",
+    "scheme": "loginauth",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "platforms": ["ios", "android", "web"],
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -18,14 +20,15 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.rini2000.loginAuth",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.rini2000.loginAuth",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.rini2000.loginAuth"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
