@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import {
   ImageBackground,
@@ -10,8 +11,10 @@ import {
   Image,
 } from "react-native";
 
-function IamMeScreen({ navigation }) {
-  const image = require("./assets/dust.png");
+function IamMeScreen() {
+  const image = require("../assets/dust.png");
+
+  const navigation = useNavigation()
 
   return (
     <View style={styles.container}>
