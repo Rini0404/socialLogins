@@ -16,7 +16,6 @@ import { useAuthRequest, makeRedirectUri } from "expo-auth-session";
 import React, { useState } from 'react';
 import Constants from "expo-constants";
 
-
 const discovery = {
   // for google
   authorizationEndpoint: "https://accounts.google.com/o/oauth2/v2/auth",
@@ -42,12 +41,12 @@ WebBrowser.maybeCompleteAuthSession();
 const LoginCover = () => {
 
 
-  const [authRequest, authResponse, promptAsync] = useAuthRequest(
+  const [authRequest, response1, promptAsync] = useAuthRequest(
     {
       clientId: CLIENT_ID,
       usePKCE: false,
       scopes: ["openid", "profile", "email"],
-      redirectUri: REDIRECT_URI,
+      redirectUri: "https://dev.devusol.net/expoAuth/",
       extraParams: {
         // On Android it will just skip right past sign in otherwise
         show_dialog: "false",
@@ -59,47 +58,15 @@ const LoginCover = () => {
   //  get their id_token  
   const [idToken, setIdToken] = useState(null);
 
-  const [ userObj, setUserObj ] = useState({});
-
   React.useEffect(() => {
 
-    if (authResponse?.type === "success") {
-      const { code } = authResponse.params;
-      setIdToken(code);
-      console.log("CODE TOKEN : ", code)
-      
-      fetch("https://www.googleapis.com/oauth2/v4/token", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `code=${code}&client_id=${CLIENT_ID}&client_secret=${CT_SECRET}&redirect_uri=${REDIRECT_URI}&grant_type=authorization_code`,
-      })
-        .then((response) => response.json())                  
-        .then((response) => {
-          let {id_token} = response;
+    // console.log('authResponse', authResponse)
 
-          fetch("https://www.googleapis.com/oauth2/v3/tokeninfo", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `id_token=${id_token}`,
+    if (response1) {
+      console.log('authResponse', response1.params)
+    }
 
-          })
-            .then((response) => response.json())
-            .then((response) => {
-              navigation.navigate("IamMeScreen", {response})
-            }
-          )
-        })
-        .catch((error) => {
-          console.log(error);
-        }
-      );
-    } 
-
-  }, [authResponse]);
+  }, [response1]);
 
 
 
@@ -117,7 +84,7 @@ const LoginCover = () => {
           <View style={styles.row}>
             <TouchableOpacity
             onPress={() => {
-              promptAsync({ useProxy: USE_PROXY })
+              promptAsync({ useProxy: false })
             }}
             >
               <Image
