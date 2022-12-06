@@ -10,6 +10,8 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { URL, URLSearchParams } from 'react-native-url-polyfill';
+
 
 import * as WebBrowser from 'expo-web-browser';
 import { useAuthRequest, makeRedirectUri } from "expo-auth-session";
@@ -55,16 +57,35 @@ const LoginCover = () => {
     discovery
   );
   
-  //  get their id_token  
-  const [idToken, setIdToken] = useState(null);
+  const [ profileObj, setProfileObj ] = useState({});
+
+  const navigation = useNavigation()
+
 
   React.useEffect(() => {
 
-    // console.log('authResponse', authResponse)
-
     if (response1) {
-      console.log('authResponse', response1.params)
+      // console.log('authResponse', response1)
+      const { url } = response1;
+
+      const newUrl = url.replace(/^https?\:\/\//i, "")
+      
+      // get name from string
+      const name = newUrl.split('&')[0].split('=')[1].replace('%20', ' ')
+
+
+      // get email from string
+      const email = newUrl.split('&')[1].split('=')[1]
+
+
+      // get picture from string
+      const picture = newUrl.split('&')[2].split('=')[1]
+
+      navigation.navigate('IamMeScreen', {name, email, picture})
+
+
     }
+
 
   }, [response1]);
 
@@ -72,7 +93,6 @@ const LoginCover = () => {
 
   const image = require("../assets/DEVUSOL.png");
 
-  const navigation = useNavigation()
 
   return (
     <View style={styles.container}>

@@ -17,19 +17,19 @@ function IamMeScreen(props) {
 
   const navigation = useNavigation()
 
-  // props.route.params.response
+  console.log('props', props.route.params)
 
-  const { response } = props.route.params
+  const { params } = props.route
 
   const [ isHere, setIsHere ] = React.useState(false)
 
   React.useEffect(() => {
     
-    if (response) {
+    if (params) {
       setIsHere(true)
     }
      
-  }, [response])
+  }, [params])
 
 
   return (
@@ -41,14 +41,14 @@ function IamMeScreen(props) {
             <>
               <Image
                 style={styles.userImage}
-                source={{ uri: response.picture }}
+                source={{ uri: params.picture }}
               />
               <Text style={styles.text}>
                 Hello:{"\n"} 
-                {response.name}!{"\n"}
+                {params.name}!{"\n"}
                 weclome to DEVUSOL
                 </Text>
-              <Text style={styles.subtext}>{response.email}</Text>
+              <Text style={styles.subtext}>{params.email}</Text>
             </>
             
           

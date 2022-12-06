@@ -82,6 +82,13 @@ const fbLogin = () => {
       <Button
         title="Login with Facebook"
         onPress={() => {
+          promptAsync(
+            {
+              useProxy: false,
+            }
+          );
+        }}
+      />
     </View>
   )
 
