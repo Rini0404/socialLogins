@@ -1,16 +1,14 @@
-import { View, Text, Button } from 'react-native'
-import React from 'react'
-
-import * as WebBrowser from 'expo-web-browser';
+import { View, Image,  Text, Button, TouchableOpacity, StyleSheet } from "react-native";
+import * as WebBrowser from "expo-web-browser";
 import { useAuthRequest, makeRedirectUri } from "expo-auth-session";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Constants from "expo-constants";
+import { useNavigation } from "@react-navigation/native";
 
 const discovery = {
   // for facebook
   authorizationEndpoint: "https://www.facebook.com/v11.0/dialog/oauth",
   tokenEndpoint: "https://graph.facebook.com/v11.0/oauth/access_token",
-
 };
 
 const USE_PROXY = Platform.select({
@@ -22,18 +20,21 @@ const REDIRECT_URI = makeRedirectUri({
   native: "loginauth://redirect",
 });
 
-const APP_ID = '3184359635207513'
+const APP_ID = "3184359635207513";
+
+const state = "{st=state123abc,ds=123456789}"
 
 const APP_SECRET = "8d90674d78bf4f9472bd934f4a2ccdb4";
 
 const fbLogin = () => {
-
-  const [authRequest, authResponse, promptAsync] = useAuthRequest(
+  // login with facebook
+  const [authRequest, response1, promptAsync] = 
+  useAuthRequest(
     {
       clientId: APP_ID,
       usePKCE: false,
-      scopes: ["openid", "profile", "email"],
-      redirectUri: REDIRECT_URI,
+      scopes: ["public_profile", "email"],
+      redirectUri: "https://dev.devusol.net/expoAuth/fb",
       extraParams: {
         // On Android it will just skip right past sign in otherwise
         show_dialog: "false",
@@ -42,56 +43,44 @@ const fbLogin = () => {
     discovery
   );
 
-  //  get their id_token
-  const [idToken, setIdToken] = useState(null);
+  const navigation = useNavigation()
 
   React.useEffect(() => {
-    if (authResponse?.type === "success") {
-      const { code } = authResponse.params;
-      // exchange the code for an access token
-      fetch(discovery.tokenEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+    if (response1) {
+     // console.log('authResponse', response1)
+     const { url } = response1;
 
-        body: `client_id=${APP_ID}&redirect_uri=${REDIRECT_URI}&client_secret=${APP_SECRET}&code=${code}`,
-      })
-        .then((response) => response.json())
-        .then((response) => {
-          console.log("response", response);
-          setIdToken(response.access_token);
-        })
-        .catch((error) => {
-          console.log("error", error);
-        });
+     const newUrl = url.replace(/^https?\:\/\//i, "")
+     
+     // get name from string
+     const name = newUrl.split('&')[0].split('=')[1].replace('%20', ' ')
+
+     // get email from string
+     const email = newUrl.split('&')[1].split('=')[1]
+
+
+     // get picture from string
+     const picture = newUrl.split('&')[2].split('=')[1]
+
+     navigation.navigate('IamMeScreen', {name, email, picture})
     }
-  }, [authResponse]);
-
-  
-
-
-
-
-
-
-
+  }, [response1]);
 
   return (
-    <View>
-      <Button
-        title="Login with Facebook"
-        onPress={() => {
-          promptAsync(
-            {
-              useProxy: false,
-            }
-          );
-        }}
-      />
-    </View>
-  )
+      <TouchableOpacity onPress={() => promptAsync()}>
+        <Image
+          style={styles.tinyLogo}
+          source={require("../assets/Facebook.png")}
+        />
+      </TouchableOpacity>
+  );
+};
 
-}
+const styles = StyleSheet.create({
+  tinyLogo: {
+    width: 60,
+    height: 60,
+  },
+});
 
-export default fbLogin
+export default fbLogin;

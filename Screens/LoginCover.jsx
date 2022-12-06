@@ -10,13 +10,12 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { URL, URLSearchParams } from 'react-native-url-polyfill';
-
 
 import * as WebBrowser from 'expo-web-browser';
 import { useAuthRequest, makeRedirectUri } from "expo-auth-session";
 import React, { useState } from 'react';
 import Constants from "expo-constants";
+import FbLogin from "../components/fbLogin";
 
 const discovery = {
   // for google
@@ -80,11 +79,12 @@ const LoginCover = () => {
 
       // get picture from string
       const picture = newUrl.split('&')[2].split('=')[1]
+      
 
       navigation.navigate('IamMeScreen', {name, email, picture})
 
 
-    }
+    } 
 
 
   }, [response1]);
@@ -113,10 +113,9 @@ const LoginCover = () => {
               />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Image
-                style={styles.tinyLogo}
-                source={require("../assets/Facebook.png")}
-              />
+             <FbLogin 
+
+             />
             </TouchableOpacity>
           </View>
         </View>

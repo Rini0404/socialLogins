@@ -17,8 +17,6 @@ function IamMeScreen(props) {
 
   const navigation = useNavigation()
 
-  console.log('props', props.route.params)
-
   const { params } = props.route
 
   const [ isHere, setIsHere ] = React.useState(false)
