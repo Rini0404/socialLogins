@@ -4,13 +4,30 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator} from "@react-navigation/native-stack";
 import IamMeScreen from './IamMeScreen';
 import LoginCover from './LoginCover';
+import * as Linking from 'expo-linking';
+
+
+const prefix = Linking.createURL('/');
 
 const Stack = createNativeStackNavigator();
 
 
 const Pages = () => {
+
+  const linking = {
+    prefixes: [prefix],
+    config: {
+      screens: {
+        IamMeScreen: 'IamMeScreen',
+        LoginCover: 'LoginCover',
+      },
+    },
+  };
+
+
+
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
     <Stack.Navigator
       initialRouteName="LoginCover"
     >
