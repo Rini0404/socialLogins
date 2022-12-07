@@ -70,25 +70,13 @@ const LoginCover = () => {
     React.useEffect(() => {
 
       if (response1) {
-        // console.log('authResponse', response1)
-        const { url } = response1;
-  
-        const newUrl = url.replace(/^https?\:\/\//i, "")
-        
-        // get name from string
-        const name = newUrl.split('&')[0].split('=')[1].replace('%20', ' ')
-  
-  
-        // get email from string
-        const email = newUrl.split('&')[1].split('=')[1]
-  
-  
-        // get picture from string
-        const picture = newUrl.split('&')[2].split('=')[1]
-        
-  
+        const { params } = response1;
+
+        let name = params.name 
+        let email = params.email
+        let picture = params.pic
+
         navigation.navigate('IamMeScreen', {name, email, picture})
-  
   
       } 
   

@@ -56,6 +56,8 @@ const fbLogin = () => {
       if (response1) {
         // console.log('authResponse', response1)
         const { url } = response1;
+
+        console.log('url', url)
   
         const newUrl = url.replace(/^https?\:\/\//i, "")
         
@@ -70,6 +72,7 @@ const fbLogin = () => {
         // get picture from string
         const picture = newUrl.split('&')[2].split('=')[1]
         
+
   
         navigation.navigate('IamMeScreen', {name, email, picture})
   
