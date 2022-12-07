@@ -1,9 +1,10 @@
-import { View, Image,  Text, Button, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Image,  Text, Button, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { useAuthRequest, makeRedirectUri } from "expo-auth-session";
 import React, { useState } from "react";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
+import * as Linking from "expo-linking";
 
 const discovery = {
   // for facebook
@@ -26,54 +27,79 @@ const state = "{st=state123abc,ds=123456789}"
 
 const APP_SECRET = "8d90674d78bf4f9472bd934f4a2ccdb4";
 
+
+
 const fbLogin = () => {
-  // login with facebook
-  const [authRequest, response1, promptAsync] = 
-  useAuthRequest(
-    {
-      clientId: APP_ID,
-      usePKCE: false,
-      scopes: ["public_profile", "email"],
-      redirectUri: "https://dev.devusol.net/expoAuth/fb",
-      extraParams: {
-        // On Android it will just skip right past sign in otherwise
-        show_dialog: "false",
-      },
-    },
-    discovery
-  );
 
-  const navigation = useNavigation()
+ const navigation = useNavigation();
+ 
+  if(Platform.OS === "ios"){
 
-  React.useEffect(() => {
-    if (response1) {
-     // console.log('authResponse', response1)
-     const { url } = response1;
 
-     const newUrl = url.replace(/^https?\:\/\//i, "")
+
+
+
+  } else {
+
+
+    const url = Linking.useURL();
+
+    const openAUth = async () => {
+      
+        await WebBrowser.openBrowserAsync(
+          "https://www.facebook.com/v11.0/dialog/oauth?client_id=3184359635207513&redirect_uri=https://dev.devusol.net/expoAuth/fbAndroid&state={st=state123abc,ds=123456789}"
+        )
+        .then((res) => {
+          console.log("res", res);
+          // setReady(true)
+
+          if(res.type !== 'opened'){
+            console.log('success')
+          }
+        }
+        )
+
      
-     // get name from string
-     const name = newUrl.split('&')[0].split('=')[1].replace('%20', ' ')
+    };
 
-     // get email from string
-     const email = newUrl.split('&')[1].split('=')[1]
+    React.useEffect(() => {
+      async function getResponse() {
+        const req = await url 
+
+        if(req){
+          const newUrl = req.replace(/^https?\:\/\//i, "")
+       
+          // get name from string
+          const name = newUrl.split("&")[0].split("=")[1].replace("%20", " ");
+          const email = newUrl.split("&")[1].split("=")[1];
+          const picture = newUrl.split("&")[2].split("=")[1];
+
+          navigation.navigate("IamMeScreen", {
+            name: name,
+            email: email,
+            picture: picture,
+          });
+        }
+
+      }
+      getResponse()
+    })
 
 
-     // get picture from string
-     const picture = newUrl.split('&')[2].split('=')[1]
 
-     navigation.navigate('IamMeScreen', {name, email, picture})
-    }
-  }, [response1]);
 
-  return (
-      <TouchableOpacity onPress={() => promptAsync()}>
+
+     return (
+      <TouchableOpacity onPress={openAUth}>
         <Image
           style={styles.tinyLogo}
           source={require("../assets/Facebook.png")}
         />
       </TouchableOpacity>
-  );
+   );
+  }
+
+ 
 };
 
 const styles = StyleSheet.create({
