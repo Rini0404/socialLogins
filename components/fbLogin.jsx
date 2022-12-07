@@ -35,9 +35,62 @@ const fbLogin = () => {
  
   if(Platform.OS === "ios"){
 
+    const [authRequest, response1, promptAsync] = useAuthRequest(
+      {
+        clientId: APP_ID,
+        usePKCE: false,
+        scopes: ["public_profile", "email"],
+        redirectUri: "https://dev.devusol.net/expoAuth/fbIos",
+        extraParams: {
+          state: state,
+          display: "popup",
+          // show_dialog: "false",
+        },
+      },
+      discovery
+    );
 
+    
+    React.useEffect(() => {
 
+      if (response1) {
+        // console.log('authResponse', response1)
+        const { url } = response1;
+  
+        const newUrl = url.replace(/^https?\:\/\//i, "")
+        
+        // get name from string
+        const name = newUrl.split('&')[0].split('=')[1].replace('%20', ' ')
+  
+  
+        // get email from string
+        const email = newUrl.split('&')[1].split('=')[1]
+  
+  
+        // get picture from string
+        const picture = newUrl.split('&')[2].split('=')[1]
+        
+  
+        navigation.navigate('IamMeScreen', {name, email, picture})
+  
+  
+      } 
+  
+  
+    }, [response1]);
 
+      
+    return (
+      <TouchableOpacity     onPress={() => {
+        promptAsync({ useProxy: false })
+      }}
+      >
+        <Image
+          style={styles.tinyLogo}
+          source={require("../assets/Facebook.png")}
+        />
+      </TouchableOpacity>
+    )
 
   } else {
 
