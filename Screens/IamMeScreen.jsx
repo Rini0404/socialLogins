@@ -44,7 +44,7 @@ function IamMeScreen(props) {
               <Text style={styles.text}>
                 Hello:{"\n"} 
                 {params.name}!{"\n"}
-                weclome to DEVUSOL
+                Welcome to DEVUSOL
                 </Text>
               <Text style={styles.subtext}>{params.email}</Text>
             </>

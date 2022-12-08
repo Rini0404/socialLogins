@@ -3149,18 +3149,6 @@
     "path-browserify" "^1.0.0"
     "url-parse" "^1.5.9"
 
-"expo-auth-session@~3.7.3":
-  "integrity" "sha512-0mX47j6WdpEoaFVxU36VBRkEjJKwAkqnRyNdd5g+Ab1fHXQJJK3nzjOjxuBzgE8mKSS9NGHr/At9IGY6MLrg2g=="
-  "resolved" "https://registry.npmjs.org/expo-auth-session/-/expo-auth-session-3.7.3.tgz"
-  "version" "3.7.3"
-  dependencies:
-    "expo-constants" "~14.0.0"
-    "expo-crypto" "~12.0.0"
-    "expo-linking" "~3.2.0"
-    "expo-web-browser" "~12.0.0"
-    "invariant" "^2.2.4"
-    "qs" "6.9.1"
-
 "expo-constants@^14.0.2", "expo-constants@~14.0.0", "expo-constants@~14.0.2":
   "integrity" "sha512-wzV3nrzTXTI8yG0tfas3fnqCfKV6YE+1GphEREyVDAShEB6mBInX1b6HgtpHFy2wOtnml+lPVmTCeGtjjLnZhA=="
   "resolved" "https://registry.npmjs.org/expo-constants/-/expo-constants-14.0.2.tgz"
@@ -3168,11 +3156,6 @@
   dependencies:
     "@expo/config" "~7.0.2"
     "uuid" "^3.3.2"
-
-"expo-crypto@~12.0.0":
-  "integrity" "sha512-2KC52eLYsXndDZOVFyr+K3Zs9wDgpqZ7F7fwAiUg+yNbE21CJrHKDFvo/Br0FAaDf/w9pUks5/qi1azB5sDzvg=="
-  "resolved" "https://registry.npmjs.org/expo-crypto/-/expo-crypto-12.0.0.tgz"
-  "version" "12.0.0"
 
 "expo-eas-client@~0.4.0":
   "integrity" "sha512-bIj2rm6lw/iZAOAW5CSAxshSXi2oY+ORpHRp4ZdqSDuwA0RIa9jGyMm1Jhostjjz5y9k2uur5vtVqq6P3Bwx/Q=="
@@ -3208,7 +3191,7 @@
   "resolved" "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-11.0.1.tgz"
   "version" "11.0.1"
 
-"expo-linking@^3.2.3", "expo-linking@~3.2.0":
+"expo-linking@^3.2.3":
   "integrity" "sha512-PgiWCao9TecLOPdtWyiNSY+UQGAwdjFx4KbHd1YsF0KnM1CJ2idcaHpDRlQPWSNmDebUZYN461/dVtJi9b2krg=="
   "resolved" "https://registry.npmjs.org/expo-linking/-/expo-linking-3.2.3.tgz"
   "version" "3.2.3"
@@ -3245,7 +3228,7 @@
     "compare-versions" "^3.4.0"
     "invariant" "^2.2.4"
 
-"expo-random@*", "expo-random@~13.0.0":
+"expo-random@~13.0.0":
   "integrity" "sha512-aGb0vtUmFFuW0TF1rdOgsz89zEVD/RXUPUnnZy5+i3jJeQ2PerJ4uo72/EuWqHpCBNto8/qT+aCzFinmQDeTAA=="
   "resolved" "https://registry.npmjs.org/expo-random/-/expo-random-13.0.0.tgz"
   "version" "13.0.0"
@@ -3293,7 +3276,7 @@
     "resolve-from" "^5.0.0"
     "uuid" "^3.4.0"
 
-"expo-web-browser@~12.0.0":
+"expo-web-browser@^12.0.0":
   "integrity" "sha512-7/RUuE0sv5kf+mTw5/SOnks0Am1ctoxvT1Xi53Nom2EuXTKBV+b2Kf5xAw3ItoW5W4MHJUX3FdNI6qc9sS9+Pw=="
   "resolved" "https://registry.npmjs.org/expo-web-browser/-/expo-web-browser-12.0.0.tgz"
   "version" "12.0.0"
@@ -5564,11 +5547,6 @@
   "integrity" "sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ=="
   "resolved" "https://registry.npmjs.org/qs/-/qs-6.7.0.tgz"
   "version" "6.7.0"
-
-"qs@6.9.1":
-  "integrity" "sha512-Cxm7/SS/y/Z3MHWSxXb8lIFqgqBowP5JMlTUFyJN88y0SGQhVmZnqFK/PeuMX9LzUyWsqqhNxIyg0jlzq946yA=="
-  "resolved" "https://registry.npmjs.org/qs/-/qs-6.9.1.tgz"
-  "version" "6.9.1"
 
 "query-string@^5.0.1":
   "integrity" "sha512-gjWOsm2SoGlgLEdAGt7a6slVOk9mGiXmPFMqrEhLQ68rhQuBnpfs3+EmlvqKyxnCo9/PPlF+9MtY02S1aFg+Jw=="
