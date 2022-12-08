@@ -36,24 +36,24 @@ function IamMeScreen(props) {
         <View style={styles.textOverall}>
           
           { isHere ? (
-            <>
-              <Image
-                style={styles.userImage}
-                source={{ uri: params.picture }}
-              />
-              <Text style={styles.text}>
-                Hello:{"\n"} 
-                {params.name}!{"\n"}
-                Welcome to DEVUSOL
-                </Text>
-              <Text style={styles.subtext}>{params.email}</Text>
-            </>
+              <>
+                <Image
+                  style={styles.userImage}
+                  source={{ uri: params.picture }}
+                />
+                <Text style={styles.text}>
+                  Hello{"\n"} 
+                  {params.name}!{"\n"}
+                  Welcome to Devusol
+                  </Text>
+                <Text style={styles.subtext}>{params.email}</Text>
+              </>
             
           
             ) : (
               <>
-              <Text style={styles.text}>LOADING</Text>
-              <Text style={styles.subtext}>LOADING</Text>
+              <Text style={styles.text}>LOADING...</Text>
+              <Text style={styles.subtext}>LOADING...</Text>
               </>  
             )
           }

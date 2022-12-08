@@ -27,12 +27,16 @@ const Pages = () => {
 
 
   return (
-    <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
+    <NavigationContainer linking={linking} >
     <Stack.Navigator
       initialRouteName="LoginCover"
     >
-      <Stack.Screen name="IamMeScreen" component={IamMeScreen} />
-      <Stack.Screen name="LoginCover" component={LoginCover} />
+      <Stack.Screen name="IamMeScreen"
+        options={{ headerShown: false }}
+      component={IamMeScreen} />
+      <Stack.Screen name="LoginCover" 
+        options={{ headerShown: false }}
+      component={LoginCover} />
     </Stack.Navigator>
   </NavigationContainer>
   )

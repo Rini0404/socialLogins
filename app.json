@@ -5,7 +5,7 @@
     "scheme": "loginauth",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/download.jpg",
     "userInterfaceStyle": "light",
     "platforms": [
       "ios",
@@ -13,8 +13,8 @@
       "web"
     ],
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/DEVUSOL.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [

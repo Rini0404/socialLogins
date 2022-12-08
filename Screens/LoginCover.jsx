@@ -63,12 +63,23 @@ const LoginCover = () => {
     }
     getResponse();
   });
+
+
+  
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={styles.textOverall}>
           <Text style={styles.text}>DEVUSOL</Text>
-          <Text style={styles.subtext}>Welcome to v1.2.0</Text>
+          <Text style={styles.subtext}>Welcome to v2.0.0!</Text>
+
+          {/* line to sign up with */}
+
+          <View style={styles.line }>
+            <View style={styles.lineLeft}></View>
+            <Text style={styles.lineText}>Sign up with</Text>
+            <View style={styles.lineRight}></View>
+          </View>
           <View style={styles.row}>
             <TouchableOpacity onPress={openAUth}>
               <Image
@@ -93,6 +104,33 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
   },
+  line: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 50,
+  },
+  lineLeft: {
+    borderBottomColor: "white",
+    borderBottomWidth: 1,
+    width: 100,
+  },
+  lineRight: {
+    borderBottomColor: "white",
+    borderBottomWidth: 1,
+
+    width: 100,
+  },
+  lineText: {
+    color: "white",
+    fontSize: 20,
+    lineHeight: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+
+    marginHorizontal: 10,
+  },
+
   text: {
     color: "white",
     fontSize: 80,
