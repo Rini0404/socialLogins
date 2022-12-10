@@ -24,14 +24,14 @@ const image = require("../assets/DEVUSOL.png");
 
 const LoginCover = () => {
   const navigation = useNavigation();
-
   const [ready, setReady] = useState(false);
-
   const url = Linking.useURL();
-
+  const clientID = "421702174775-q1jbge72aku0h13g0lglh6gbari6s49f.apps.googleusercontent.com";
+  // const redirect = "https://dev.devusol.net/expoAuth/android";
+  const redirect = "https://mobileauth.devusol.cloud/mobileauth/android";
   const openAUth = async () => {
     await WebBrowser.openBrowserAsync(
-      "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=421702174775-q1jbge72aku0h13g0lglh6gbari6s49f.apps.googleusercontent.com&redirect_uri=https://dev.devusol.net/expoAuth/android&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&access_type=offline&prompt=consent"
+      `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientID}&redirect_uri=${redirect}&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&access_type=offline&prompt=consent`
     ).then((res) => {
       console.log("res", res);
       // setReady(true)
@@ -65,7 +65,7 @@ const LoginCover = () => {
   });
 
 
-  
+
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
@@ -75,7 +75,7 @@ const LoginCover = () => {
 
           {/* line to sign up with */}
 
-          <View style={styles.line }>
+          <View style={styles.line}>
             <View style={styles.lineLeft}></View>
             <Text style={styles.lineText}>Sign up with</Text>
             <View style={styles.lineRight}></View>

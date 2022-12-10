@@ -17,7 +17,9 @@ const fbLogin = () => {
   const navigation = useNavigation();
 
   const url = Linking.useURL();
-
+  const clientID = "421702174775-q1jbge72aku0h13g0lglh6gbari6s49f.apps.googleusercontent.com";
+  // const redirect = "https://dev.devusol.net/expoAuth/android";
+  const redirect = "https://mobileauth.devusol.cloud/mobileauth/fbAndroid";
   const openAUth = async () => {
     await WebBrowser.openBrowserAsync(
       "https://www.facebook.com/v11.0/dialog/oauth?client_id=3184359635207513&redirect_uri=https://dev.devusol.net/expoAuth/fbAndroid&state={st=state123abc,ds=123456789}"
