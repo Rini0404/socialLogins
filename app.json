@@ -26,10 +26,6 @@
     },
     "android": {
       "package": "com.rini2000.loginAuth",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
       "versionCode": 3
     },
     "web": {
