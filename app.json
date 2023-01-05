@@ -1,50 +1,40 @@
 {
-  "expo": {
-    "name": "loginAuth",
-    "slug": "loginAuth",
-    "scheme": "loginauth",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/download.jpg",
-    "userInterfaceStyle": "light",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "splash": {
-      "image": "./assets/DEVUSOL.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "bundleIdentifier": "com.rini2000.loginAuth",
-      "supportsTablet": true
-    },
-    "android": {
-      "package": "com.rini2000.loginAuth",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "versionCode": 3
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "e25cbee9-c35d-4af9-9a10-58017882d51f"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "sdkVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/e25cbee9-c35d-4af9-9a10-58017882d51f"
-    }
-  }
+	"expo": {
+		"name": "loginAuth",
+		"slug": "loginAuth",
+		"scheme": "loginauth",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/download.jpg",
+		"userInterfaceStyle": "light",
+		"platforms": [ "ios", "android", "web" ],
+		"splash": {
+			"image": "./assets/DEVUSOL.png",
+			"resizeMode": "cover",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": [ "**/*" ],
+		"ios": {
+			"bundleIdentifier": "com.rini2000.loginAuth",
+			"supportsTablet": true
+		},
+		"android": {
+			"package": "com.rini2000.loginAuth",
+			"versionCode": 3
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "e25cbee9-c35d-4af9-9a10-58017882d51f"
+			}
+		},
+		"runtimeVersion": {
+			"policy": "sdkVersion"
+		},
+		"updates": {
+			"url": "https://u.expo.dev/e25cbee9-c35d-4af9-9a10-58017882d51f"
+		}
+	}
 }
