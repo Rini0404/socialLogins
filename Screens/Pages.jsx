@@ -6,11 +6,9 @@ import IamMeScreen from './IamMeScreen';
 import LoginCover from './LoginCover';
 import * as Linking from 'expo-linking';
 
-
 const prefix = Linking.createURL('/');
 
 const Stack = createNativeStackNavigator();
-
 
 const Pages = () => {
 
@@ -23,8 +21,6 @@ const Pages = () => {
       },
     },
   };
-
-
 
   return (
     <NavigationContainer linking={linking} >
