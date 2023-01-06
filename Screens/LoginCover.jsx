@@ -62,7 +62,6 @@ const LoginCover = () => {
         const name = newUrl.split("&")[0].split("=")[1].replace("%20", " ");
         const email = newUrl.split("&")[1].split("=")[1];
         const picture = newUrl.split("&")[2].split("=")[1];
-
         
         navigation.navigate("IamMeScreen", {
           name: name,
@@ -72,7 +71,7 @@ const LoginCover = () => {
       }
     }
     getResponse();
-  });
+  })
 
   return (
     <View style={styles.container}>
