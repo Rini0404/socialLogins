@@ -26,16 +26,23 @@ const LoginCover = () => {
   const navigation = useNavigation();
   const [ready, setReady] = useState(false);
   const url = Linking.useURL();
-  const clientID = "421702174775-q1jbge72aku0h13g0lglh6gbari6s49f.apps.googleusercontent.com";
-  // const redirect = "https://dev.devusol.net/expoAuth/android";
-  const redirect = "https://mobileauth.devusol.cloud/mobileauth/android";
-  const openAUth = async () => {
+
+  const openAuth = async () => {
+    const state = "goog_23qwetaset"
+    const oauth = await fetch('https://sean.devusol.net/keys').
+      then((response) => {
+        return response.json()
+      }).then((final) => {
+        return final;
+      }).catch((error) => {
+        console.error(error);
+      });
+   // console.log(oauth)
     await WebBrowser.openBrowserAsync(
-      `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientID}&redirect_uri=${redirect}&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&access_type=offline&prompt=consent`
+      `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${oauth.clientId}&redirect_uri=${oauth.redirect}&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&access_type=offline&prompt=consent&state=${state}`
     ).then((res) => {
       console.log("res", res);
       // setReady(true)
-
       if (res.type !== "opened") {
         console.log("success");
       }
@@ -43,10 +50,12 @@ const LoginCover = () => {
   };
 
   React.useEffect(() => {
+
     async function getResponse() {
       const req = await url;
 
       if (req) {
+        console.log("heard back req: ", req)
         const newUrl = req.replace(/^https?\:\/\//i, "");
 
         // get name from string
@@ -54,6 +63,7 @@ const LoginCover = () => {
         const email = newUrl.split("&")[1].split("=")[1];
         const picture = newUrl.split("&")[2].split("=")[1];
 
+        
         navigation.navigate("IamMeScreen", {
           name: name,
           email: email,
@@ -63,8 +73,6 @@ const LoginCover = () => {
     }
     getResponse();
   });
-
-
 
   return (
     <View style={styles.container}>
@@ -81,7 +89,7 @@ const LoginCover = () => {
             <View style={styles.lineRight}></View>
           </View>
           <View style={styles.row}>
-            <TouchableOpacity onPress={openAUth}>
+            <TouchableOpacity onPress={openAuth}>
               <Image
                 style={styles.tinyLogo}
                 source={require("../assets/Google.png")}
