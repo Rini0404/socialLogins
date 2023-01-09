@@ -17,10 +17,10 @@ const fbLogin = () => {
   const navigation = useNavigation();
 
   const url = Linking.useURL();
-  
+
   const openAuth = async () => {
-    const state = "fb_23qwetaset"
-    const oauth = await fetch('https://sean.devusol.net/keys').
+      const state = "fb_x3m3j8990";
+        const oauth = await fetch('https://mobileauth.devusol.cloud/keys').
       then((response) => {
         return response.json()
       }).then((final) => {
@@ -30,7 +30,7 @@ const fbLogin = () => {
       });
 
     await WebBrowser.openBrowserAsync(
-      `https://www.facebook.com/dialog/oauth?client_id=${oauth.facebookClientId}&redirect_uri=${oauth.facebookRedirect}&state=${state}` //{st=state123abc,ds=123456789}
+      `https://www.facebook.com/dialog/oauth?client_id=${oauth.facebookClientId}&redirect_uri=${oauth.facebookRedirect}&state=${state}&scope=openid%20email` //{st=state123abc,ds=123456789}
     ).then((res) => {
       console.log("res", res);
 
@@ -45,12 +45,9 @@ const fbLogin = () => {
       const req = await url;
 
       if (req) {
-        const newUrl = req.replace(/^https?\:\/\//i, "");
-
-        // get name from string
-        const name = newUrl.split("&")[0].split("=")[1].replace("%20", " ");
-        const email = newUrl.split("&")[1].split("=")[1];
-        const picture = newUrl.split("&")[2].split("=")[1];
+        const name = req.split("name=").pop().split("&")[0].replace("%20", " ");
+        const email = req.split("email=").pop().split("&")[0];
+        const picture = req.split("pic=")[1];
 
         navigation.navigate("IamMeScreen", {
           name: name,

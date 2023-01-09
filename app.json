@@ -2,7 +2,7 @@
   "expo": {
     "name": "Devusol Social",
     "slug": "loginAuth",
-    "scheme": "loginauth",
+    "scheme": "devusol",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/download.png",
