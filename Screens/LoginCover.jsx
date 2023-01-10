@@ -57,7 +57,7 @@ const LoginCover = () => {
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={styles.textOverall}>
           <Text style={styles.text}>DEVUSOL</Text>
-          <Text style={styles.subtext}>Welcome to v2.0.1!</Text>
+          <Text style={styles.subtext}>Welcome to v3.0!</Text>
 
           {/* line to sign up with */}
 
