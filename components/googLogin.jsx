@@ -31,9 +31,8 @@ const googleLogin = () => {
     const launch = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${oauth.googleClientId}&redirect_uri=${oauth.googleRedirect}&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&access_type=offline&prompt=consent&state=${state}`
 
     if (Platform.OS == "ios") {
-      console.log("IOS.....")
-      await WebBrowser.openAuthSessionAsync(launch), then((res) => {
-       // (res.type === "success") ? extract(res.url) : console.log("RESPONSE ERROR ", res);
+      await WebBrowser.openAuthSessionAsync(launch).then((res) => {
+        (res.type === "success") ? extract(res.url) : console.log("RESPONSE ERROR ", res);
       });
 
     } else {
@@ -50,22 +49,22 @@ const googleLogin = () => {
     const picture = req.split("pic=")[1];
 
 
-    // navigation.navigate("IamMeScreen", {
-    //   name: name,
-    //   email: email,
-    //   picture: picture,
-    // });
+    navigation.navigate("IamMeScreen", {
+      name: name,
+      email: email,
+      picture: picture,
+    });
   }
 
   React.useEffect(() => {
     async function getAndroidResponse() {
 
-      const req = await url;
+      const req = url;
       console.log("use effect", req)
-      //if (req) extract(req);
+      if (req) extract(req);
     };
     getAndroidResponse();
-  }, []);
+  });
 
   return (
     <TouchableOpacity onPress={openAuth}>

@@ -15,12 +15,11 @@ import * as Linking from "expo-linking";
 
 const fbLogin = () => {
   const navigation = useNavigation();
-
   const url = Linking.useURL();
 
   const openAuth = async () => {
-      const state = "fb_x3m3j8990";
-        const oauth = await fetch('https://mobileauth.devusol.cloud/keys').
+    const state = "fb_x3m3j8990";
+    const oauth = await fetch('https://mobileauth.devusol.cloud/keys').
       then((response) => {
         return response.json()
       }).then((final) => {
@@ -29,34 +28,43 @@ const fbLogin = () => {
         console.error(error);
       });
 
-    await WebBrowser.openBrowserAsync(
-      `https://www.facebook.com/dialog/oauth?client_id=${oauth.facebookClientId}&redirect_uri=${oauth.facebookRedirect}&state=${state}&scope=openid%20email` //{st=state123abc,ds=123456789}
-    ).then((res) => {
-      console.log("res", res);
+    const launch = `https://www.facebook.com/dialog/oauth?client_id=${oauth.facebookClientId}&redirect_uri=${oauth.facebookRedirect}&state=${state}&scope=openid%20email`
 
-      if (res.type !== "opened") {
-        console.log("success");
-      }
-    });
+    if (Platform.OS == "ios") {
+      await WebBrowser.openAuthSessionAsync(launch).then((res) => {
+        (res.type === "success") ? extract(res.url) : console.log("RESPONSE ERROR ", res);
+      });
+
+    } else {
+
+      await WebBrowser.openBrowserAsync(launch).then((res) => {
+        (res.type !== "opened") ? console.log("success") : console.log("RESPONSE ERROR ", res);
+      });
+    }
   };
 
+  const extract = (req) => {
+    const name = req.split("name=").pop().split("&")[0].replace("%20", " ");
+    const email = req.split("email=").pop().split("&")[0];
+    const picture = req.split("pic=")[1];
+
+
+    navigation.navigate("IamMeScreen", {
+      name: name,
+      email: email,
+      picture: picture,
+    });
+  }
+
+
   React.useEffect(() => {
-    async function getResponse() {
-      const req = await url;
+    async function getAndroidResponse() {
 
-      if (req) {
-        const name = req.split("name=").pop().split("&")[0].replace("%20", " ");
-        const email = req.split("email=").pop().split("&")[0];
-        const picture = req.split("pic=")[1];
-
-        navigation.navigate("IamMeScreen", {
-          name: name,
-          email: email,
-          picture: picture,
-        });
-      }
-    }
-    getResponse();
+      const req = url;
+      console.log("use effect", req)
+      if (req) extract(req);
+    };
+    getAndroidResponse();
   });
 
   return (

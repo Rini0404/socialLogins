@@ -28,36 +28,12 @@ const LoginCover = () => {
   const [ready, setReady] = useState(false);
   const url = Linking.useURL();
 
-  // React.useEffect(() => {
-
-  //   async function getResponse() {
-  //     const req = await url;
-
-  //     if (req) {
-  //       console.log("heard back req: ", req)
-  //       const newUrl = req.replace(/^https?\:\/\//i, "");
-
-  //       // get name from string
-  //       const name = newUrl.split("&")[0].split("=")[1].replace("%20", " ");
-  //       const email = newUrl.split("&")[1].split("=")[1];
-  //       const picture = newUrl.split("&")[2].split("=")[1];
-        
-  //       navigation.navigate("IamMeScreen", {
-  //         name: name,
-  //         email: email,
-  //         picture: picture,
-  //       });
-  //     }
-  //   }
-  //   getResponse();
-  // })
-
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={styles.textOverall}>
           <Text style={styles.text}>DEVUSOL</Text>
-          <Text style={styles.subtext}>Welcome to v3.0!</Text>
+          <Text style={styles.subtext}>Welcome to v3.0.1!</Text>
 
           {/* line to sign up with */}
 
@@ -68,7 +44,7 @@ const LoginCover = () => {
           </View>
           <View style={styles.row}>
             <TouchableOpacity>
-            <GoogLogin />
+              <GoogLogin />
             </TouchableOpacity>
             <TouchableOpacity>
               <FbLogin />
