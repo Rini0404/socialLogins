@@ -5,7 +5,7 @@ import { createNativeStackNavigator} from "@react-navigation/native-stack";
 import IamMeScreen from './IamMeScreen';
 import LoginCover from './LoginCover';
 import * as Linking from 'expo-linking';
-import { useFonts } from 'expo-font';
+// import { useFonts } from 'expo-font';
 
 const prefix = Linking.createURL('/');
 
@@ -25,10 +25,10 @@ const Pages = () => {
     },
   };
 
-  const [fontsLoaded] = useFonts({
-    'DFont': require('../assets/DFont.ttf'),
-    'KFont': require('../assets/KFont.ttf'),
-  });
+  // const [fontsLoaded] = useFonts({
+  //   'DFont': require('../assets/DFont.ttf'),
+  //   'KFont': require('../assets/KFont.ttf'),
+  // });
 
   return (
     <NavigationContainer linking={linking} >

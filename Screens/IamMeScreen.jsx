@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "left",
     paddingHorizontal: 50,
-    fontFamily: "KFont"
+    // fontFamily: "KFont"
   },
   row: {
     flexDirection: "row",
