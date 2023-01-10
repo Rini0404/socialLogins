@@ -59,7 +59,7 @@ const fbLogin = () => {
 
   React.useEffect(() => {
     async function getAndroidResponse() {
-
+      if (Platform.OS == "ios") return;
       const req = url;
       console.log("use effect", req)
       if (req) extract(req);
@@ -68,19 +68,35 @@ const fbLogin = () => {
   });
 
   return (
-    <TouchableOpacity onPress={openAuth}>
-      <Image
-        style={styles.tinyLogo}
-        source={require("../assets/Facebook.png")}
-      />
+    <TouchableOpacity  style={styles.button} onPress={openAuth}>
+    
+        <Text style={styles.text}> Facebook</Text>
+
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   tinyLogo: {
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
+    backgroundColor: "white",
+    borderRadius: 5,
+    margin: 5,
+    
+  },
+  button: {
+    backgroundColor: "#3B5998",
+    padding: 10,
+    marginBottom: 0,
+    margin: 20,
+  },
+
+  text: {
+    color: "white",
+    fontSize: 20,
+ 
+    textAlign: "center",
   },
 });
 

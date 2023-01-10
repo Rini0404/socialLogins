@@ -18,8 +18,9 @@ import * as WebBrowser from "expo-web-browser";
 import React, { useState } from "react";
 import Constants from "expo-constants";
 import FbLogin from "../components/fbLogin";
-import GoogLogin from "../components/googLogin"
+import GoogLogin from "../components/googLogin";
 import * as Linking from "expo-linking";
+import DevusolMain from "../assets/DevusolMain.png";
 
 const image = require("../assets/DEVUSOL.png");
 
@@ -31,18 +32,22 @@ const LoginCover = () => {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <View style={styles.logo}>
+          <Image style={styles.imagelogo} source={DevusolMain} />
+        </View>
         <View style={styles.textOverall}>
-          <Text style={styles.text}>DEVUSOL</Text>
-          <Text style={styles.subtext}>Welcome to v3.0.1!</Text>
-
+          <Text style={styles.textName}>Orlando App Studio</Text>
+          <Text style={styles.subtext}>
+            Orlando App Studio will help you develop your business on the web
+            and in mobile applications from design to deployment in Windows,
+            iOS, Android and beyond.
+          </Text>
           {/* line to sign up with */}
-
           <View style={styles.line}>
-            <View style={styles.lineLeft}></View>
-            <Text style={styles.lineText}>Sign up with</Text>
-            <View style={styles.lineRight}></View>
+            <View style={styles.linecenter}></View>
           </View>
-          <View style={styles.row}>
+          <Text style={styles.lineText}>Login / Sign Up</Text>
+          <View>
             <TouchableOpacity>
               <GoogLogin />
             </TouchableOpacity>
@@ -68,44 +73,49 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 50,
+    
   },
-  lineLeft: {
-    borderBottomColor: "white",
-    borderBottomWidth: 1,
-    width: 100,
+  linecenter: {
+    borderBottomColor: "#656565",
+    borderBottomWidth: 2,
+    width: 300,
   },
-  lineRight: {
-    borderBottomColor: "white",
-    borderBottomWidth: 1,
-
-    width: 100,
-  },
+  
   lineText: {
-    color: "white",
+    color: "#C4C4C4",
     fontSize: 20,
     lineHeight: 24,
     fontWeight: "bold",
     textAlign: "center",
-
     marginHorizontal: 10,
+    paddingTop: 30,
   },
 
   text: {
     color: "white",
-    fontSize: 80,
+    fontSize: 50,
     lineHeight: 84,
     fontWeight: "bold",
     textAlign: "center",
+
+  },
+  textName: {
+    color: "#C0FF6B",
+    fontSize: 28,
+    lineHeight: 50,
+    textAlign: "left",
+    paddingHorizontal: 50,
   },
   textOverall: {
-    top: "50%",
+    paddingTop: 20,
   },
   subtext: {
     color: "white",
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 24,
     fontWeight: "bold",
-    textAlign: "center",
+    textAlign: "left",
+    paddingHorizontal: 50,
   },
   row: {
     flexDirection: "row",
@@ -119,9 +129,17 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 70,
   },
-  tinyLogo: {
-    width: 60,
-    height: 60,
+
+  logo: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 50,
+  },
+  imagelogo: {
+    resizeMode: "contain",
+    width: 300,
+    height: 80,
+    alignItems: "center",
   },
 });
 

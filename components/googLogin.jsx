@@ -18,27 +18,31 @@ const googleLogin = () => {
   const url = Linking.useURL();
 
   const openAuth = async () => {
-    const state = "goog_23qwetaset"
-    const oauth = await fetch('https://mobileauth.devusol.cloud/keys').
-      then((response) => {
-        return response.json()
-      }).then((final) => {
+    const state = "goog_23qwetaset";
+    const oauth = await fetch("https://mobileauth.devusol.cloud/keys")
+      .then((response) => {
+        return response.json();
+      })
+      .then((final) => {
         return final;
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.error(error);
       });
 
-    const launch = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${oauth.googleClientId}&redirect_uri=${oauth.googleRedirect}&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&access_type=offline&prompt=consent&state=${state}`
+    const launch = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${oauth.googleClientId}&redirect_uri=${oauth.googleRedirect}&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&access_type=offline&prompt=consent&state=${state}`;
 
     if (Platform.OS == "ios") {
       await WebBrowser.openAuthSessionAsync(launch).then((res) => {
-        (res.type === "success") ? extract(res.url) : console.log("RESPONSE ERROR ", res);
+        res.type === "success"
+          ? extract(res.url)
+          : console.log("RESPONSE ERROR ", res);
       });
-
     } else {
-
       await WebBrowser.openBrowserAsync(launch).then((res) => {
-        (res.type !== "opened") ? console.log("success") : console.log("RESPONSE ERROR ", res);
+        res.type !== "opened"
+          ? console.log("success")
+          : console.log("RESPONSE ERROR ", res);
       });
     }
   };
@@ -48,30 +52,28 @@ const googleLogin = () => {
     const email = req.split("email=").pop().split("&")[0];
     const picture = req.split("pic=")[1];
 
-
     navigation.navigate("IamMeScreen", {
       name: name,
       email: email,
       picture: picture,
     });
-  }
+  };
 
   React.useEffect(() => {
     async function getAndroidResponse() {
-
+      if (Platform.OS == "ios") return;
       const req = url;
-      console.log("use effect", req)
+      console.log("use effect", req);
+
       if (req) extract(req);
-    };
+    }
     getAndroidResponse();
   });
 
   return (
-    <TouchableOpacity onPress={openAuth}>
-      <Image
-        style={styles.tinyLogo}
-        source={require("../assets/Google.png")}
-      />
+    <TouchableOpacity style={styles.button} onPress={openAuth}>
+   
+        <Text style={styles.text}> Google</Text>
 
     </TouchableOpacity>
   );
@@ -79,8 +81,28 @@ const googleLogin = () => {
 
 const styles = StyleSheet.create({
   tinyLogo: {
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
+    backgroundColor: "white",
+    borderRadius: 5,
+    margin: 5,
+  },
+  button: {
+    backgroundColor: "#4C8BF5",
+    padding: 10,
+    marginBottom: 0,
+    margin: 20,
+    textAlign: "center",
+  },
+  row: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+ 
+    textAlign: "center",
   },
 });
 
